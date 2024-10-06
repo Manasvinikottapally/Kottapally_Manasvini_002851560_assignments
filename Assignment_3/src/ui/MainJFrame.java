@@ -4,7 +4,7 @@
  */
 package ui;
 import java.awt.CardLayout;
-import model.Address;
+//import model.Address;
 import model.person;
 import model.PersonDirectory;
 import ui.PersonDetails.PersondetailsworkareaJPanel;
@@ -19,8 +19,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-        
-         this.persondirectory=new PersonDirectory();
+        this.persondirectory=new PersonDirectory();
         generateDemoData();
     }
 
@@ -56,7 +55,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(btndetails, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,11 +74,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         pack();
@@ -140,24 +139,27 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void generateDemoData() {
         
-        person Person1 = persondirectory.addperson();
-        Person1.setFirstName("sai");
-        Person1.setLastName("kumar");
-        Person1.setSSN(85789134);
-        Person1.setAge(24);
-        Person1.setEmail("asdfghjkoiuy@gmail.com");
-        Person1.setGender("male");
         
         
-        Address homeAdd1= new Address();       
-        homeAdd1.setCity("Boston");        
-        homeAdd1.setZipcode("02125");
-        Person1.setHomeAddress(homeAdd1);
+        person newPerson =persondirectory.addperson();
+        newPerson.setFirstName("Rachel");
+        newPerson.setLastName("Green");
+        newPerson.setAge(21);
+       // newPerson.setGender("F");
+        newPerson.setSSN("784672343");
+        newPerson.getWorkAddress().setState("MA"); 
+        newPerson.getHomeAddress().setPhonenumber("9837765763");
+        newPerson.getWorkAddress().setPhonenumber("1234567890");
+        newPerson.getHomeAddress().setState("MA");
+        newPerson.getWorkAddress().setStreetAddress("123 tremont st");
+       // newPerson.getWorkAddress().setZipcode("23456l");
+        newPerson.getWorkAddress().setCity("Boston");
+        newPerson.getHomeAddress().setCity("Boston");
+        newPerson.getHomeAddress().setStreetAddress("103 Huntington Ave");
+        //newPerson.getHomeAddress().setZipcode("21340L");
+        newPerson.getHomeAddress().setUnitNumber("988");
+        newPerson.getWorkAddress().setUnitNumber("110");
         
-         Address workAdd1= new Address();
-        workAdd1.setCity("Boston");
-        workAdd1.setZipcode("02179");
-        Person1.setWorkAddress(workAdd1);
-
+        
     }
 }

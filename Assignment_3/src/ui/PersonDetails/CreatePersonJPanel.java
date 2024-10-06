@@ -536,79 +536,95 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
 
     private void btnaddpersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddpersonActionPerformed
         // TODO add your handling code here:
-        long SSN;
+        String firstName=txtfirstname.getText();
+        String lastName=txtlastname.getText();
+        String SSN=txtssn.getText();
+        char gender;
         int age;
-        String gender;
-        String firstName= txtfirstname.getText();
-        String lastName= txtlastname.getText();
+        Long zipCodeWork;
+        Long zipCodeHome;
         
-         try{
-            SSN= Long.parseLong(txtssn.getText());
-            age = Integer.parseInt(txtage.getText());
-            //gender = Double.parseDouble(txtgender.getText());
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Please check the SSN , age input. They should be numbers", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;//valid
-    }//GEN-LAST:event_btnaddpersonActionPerformed
-          String hstreetadd = txtstreetaddress.getText();
-          String hunit = txtunitnumber.getText();
-          String hcity = txtcity.getText();
-          String hstate = txtstate.getText();
-          String hzip = txtzipcode.getText();
-          String hphone = txtphonenumber.getText();
-          
-          String wStreet = txtstreetaddress1.getText();
-          String wUnit = txtunitnumber1.getText();
-          String wCity = txtcity1.getText();
-          String wState = txtstate1.getText();
-          String wZip = txtzipcode1.getText();
-          String wPhone = txtphonenumber1.getText();
-          
-          
-          if(firstName.isBlank() || lastName.isBlank())
-        {
-            JOptionPane.showMessageDialog(this,"All fields are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            //validification for create account , checking if the text fields are empty
-            //stops the process if it's empty
+        String streetAddressWork=txtstreetaddress1.getText();
+        String unitNumberWork=txtunitnumber1.getText();
+        String cityWork=txtcity1.getText();
+        String stateWork=txtstate1.getText();
+        //String zipCodeWork=txtZipCodeWork.getText();
+        String phoneNumberWork=txtphonenumber1.getText();
+        
+        String streetAddressHome=txtstreetaddress.getText();
+        String unitNumberHome=txtunitnumber.getText();
+        String cityHome=txtcity.getText();
+        String stateHome=txtstate.getText();
+        //String zipCodeWork=txtZipCodeWork.getText();
+        String phoneNumberHome=txtphonenumber.getText();
+        
+        if(firstName.isBlank() || lastName.isBlank() || SSN.isBlank()|| streetAddressWork.isBlank()|| unitNumberWork.isBlank()|| cityWork.isBlank()
+                || stateWork.isBlank()|| phoneNumberWork.isBlank()|| streetAddressHome.isBlank()|| unitNumberHome.isBlank()|| cityHome.isBlank()
+                || stateHome.isBlank()|| phoneNumberHome.isBlank()){
+            JOptionPane.showMessageDialog(this,"All fields are mandatory.","Error",JOptionPane.ERROR_MESSAGE);
+            //PAUSE UNTIL THE USER CLOSES THE DIALOG.
             return;
         }
-        
+        try{
+           age=Integer.parseInt(txtage.getText());
+           zipCodeWork=Long.parseLong(txtzipcode1.getText());
+           zipCodeHome=Long.parseLong(txtzipcode.getText());
+           gender=txtgender.getText().charAt(0);
+            
+            
+        }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Please enter valid age,zipcodes and Gender(M for male, F for Female and O for Others) as input.","Warning",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         
         // validation for home address and work address
          
-        if(hstreetadd.isBlank()||hunit.isBlank()||hcity.isBlank()||hstate.isBlank()||hzip.isBlank()||hphone.isBlank()){
-            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        person p=personDirectory.addperson();
         
-        if(wStreet.isBlank()|| wUnit.isBlank()|| wCity.isBlank()||wState.isBlank()||wZip.isBlank()|| wPhone.isBlank()){
-            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+       
         
-        JOptionPane.showMessageDialog(null, "Account Created!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+        p.setGender(gender);
+        p.setAge(age);
+        p.setSSN(SSN);
+       p.getHomeAddress().setCity(cityHome);
+       p.getHomeAddress().setStreetAddress(streetAddressHome);
+       p.getHomeAddress().setPhonenumber(phoneNumberHome);
+       p.getHomeAddress().setState(stateHome);
+       p.getHomeAddress().setZipcode(zipCodeHome);
+       p.getHomeAddress().setUnitNumber(unitNumberHome);
+        p.getWorkAddress().setCity(cityWork);
+       p.getWorkAddress().setStreetAddress(streetAddressWork);
+       p.getWorkAddress().setPhonenumber(phoneNumberWork);
+       p.getWorkAddress().setState(stateWork);
+       p.getWorkAddress().setZipcode(zipCodeWork);
+       p.getWorkAddress().setUnitNumber(unitNumberWork);
+       
+       JOptionPane.showMessageDialog(this,"Person details successfully created.","Information",JOptionPane.INFORMATION_MESSAGE);
         
-        //clearing text fields after submitting
         txtfirstname.setText("");
+        txtgender.setText("");
         txtlastname.setText("");
-        txtssn.setText("");
         txtage.setText("");
-        
-        txtstreetaddress.setText("");
-        txtunitnumber.setText("");
+        txtssn.setText("");
         txtcity.setText("");
+        txtstreetaddress.setText("");
+        txtphonenumber.setText("");
         txtstate.setText("");
         txtzipcode.setText("");
-        txtphonenumber.setText("");
-        
-        txtstreetaddress1.setText("");
-        txtunitnumber1.setText("");
+        txtunitnumber.setText("");
         txtcity1.setText("");
+        txtstreetaddress1.setText("");
+        txtphonenumber1.setText("");
         txtstate1.setText("");
         txtzipcode1.setText("");
-        txtphonenumber1.setText("");
+        txtunitnumber1.setText("");
+                
         
-    }
+     
+    }//GEN-LAST:event_btnaddpersonActionPerformed
+
         
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

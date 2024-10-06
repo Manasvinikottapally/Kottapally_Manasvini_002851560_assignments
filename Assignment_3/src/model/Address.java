@@ -14,17 +14,9 @@ public class Address {
     private String unitNumber;
     private String city;
     private String state;
-    private String zipcode;
+    private long zipcode;
     private String phonenumber;
     
-    public Address(String streetAddress,String unitNumber,String city,String state,String zipcode,String phonenumber){
-    this.streetAddress = streetAddress;
-    this.unitNumber = unitNumber;
-    this.city = city;
-    this.state = state;
-    this.zipcode = zipcode;
-    this.phonenumber = phonenumber;
-    }
     
 
     public String getStreetAddress() {
@@ -59,11 +51,11 @@ public class Address {
         this.state = state;
     }
 
-    public String getZipcode(String hZip) {
+    public long getZipcode(long hZip) {
         return zipcode;
     }
 
-    public void setZipcode(String zipcode) {
+    public void setZipcode(long zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -74,10 +66,5 @@ public class Address {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-    
-    @Override
-    public String toString(){
-    return streetAddress + ","+ unitNumber +","+ city +","+ state +","+ zipcode +","+ phonenumber;
-    }
-    
+      
 }

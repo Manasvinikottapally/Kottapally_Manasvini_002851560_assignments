@@ -12,13 +12,19 @@ package model;
 public class person {
     private String firstName;
     private String lastName;
-    private long SSN;
+    private String SSN;
     private int age;
     private String email;
-    private String gender;
+    private char gender;
     private Address homeAddress;
     private Address workAddress;
+    
+    public person(){
+        this.homeAddress =new Address();
+        this.workAddress =new Address();
+    }
 
+    
     public String getFirstName() {
         return firstName;
     }
@@ -35,11 +41,11 @@ public class person {
         this.lastName = lastName;
     }
 
-    public long getSSN() {
+    public String getSSN(String SSN) {
         return SSN;
     }
 
-    public void setSSN(long SSN) {
+    public void setSSN(String SSN) {
         this.SSN = SSN;
     }
 
@@ -59,11 +65,11 @@ public class person {
         this.email = email;
     }
 
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
@@ -82,5 +88,12 @@ public class person {
     public void setWorkAddress(Address workAddress) {
         this.workAddress = workAddress;
     }
+
+     @Override
+    public String toString(){
+        return firstName;
+    }
+
+    
 
 }

@@ -7,7 +7,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.Address;
+//import model.Address;
 import model.person;
 import model.PersonDirectory;
 
@@ -17,12 +17,12 @@ import model.PersonDirectory;
  */
 public class ViewPersonJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private PersonDirectory accountDirectory;
+    private PersonDirectory personDirectory;
     private person person;
     /**
      * Creates new form ViewPersonJPanel
      */
-    public ViewPersonJPanel(JPanel userProcessContainer,PersonDirectory accountDirectory,person person) {
+    public ViewPersonJPanel(JPanel userProcessContainer,PersonDirectory personDirectory,person person) {
         initComponents();
         
         this.userProcessContainer= userProcessContainer;
@@ -553,78 +553,67 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-        long SSN;
-        int age;
-        double weight;
-        
-        String firstName= txtfirstname.getText();
-        String lastName= txtlastname.getText();
-        
+         int age;
+        Long zipCodeHome;
+        Long zipCodeWork;
+        char gender;
+       
         try{
-            SSN= Long.parseLong(txtssn.getText());
-            age = Integer.parseInt(txtage.getText());
-            //weight = Double.parseDouble(txtgender.getText());
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Please check the SSN , age input. They should be numbers", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;//validation for balance input text field 
+            age=Integer.parseInt(txtage.getText());
+            zipCodeHome=Long.parseLong(txtzipcode.getText());
+            zipCodeWork=Long.parseLong(txtzipcode1.getText());
+            gender=txtgender.getText().charAt(0);
+        }catch(Exception e){
+       JOptionPane.showMessageDialog(null,"Please check age,zip codes and gender. Gender needs to be M/F/O: Male,Female,Others.");
+       return;
         }
-          String hstreetadd = txtstreetaddress.getText();
-          String hunit = txtunitnumber.getText();
-          String hcity = txtcity.getText();
-          String hstate = txtstate.getText();
-          String hZip = txtzipcode.getText();
-          String hphone = txtphonenumber.getText();
-          
-          String wStreet = txtstreetaddress1.getText();
-          String wUnit = txtunitnumber1.getText();
-          String wCity = txtcity1.getText();
-          String wState = txtstate1.getText();
-          String wZip = txtzipcode1.getText();
-          String wPhone = txtphonenumber1.getText();
-          
-           if(firstName.isBlank() || lastName.isBlank())
-        {
-            JOptionPane.showMessageDialog(this,"All fields are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            //validification for create person , checking if the text fields are empty
-            //stops the process if it's empty
+        
+        String firstName=txtfirstname.getText();
+        String lastName=txtlastname.getText();
+        String SSN=txtssn.getText();
+        
+        String cityHome=txtcity.getText();
+        String cityWork=txtcity1.getText();
+        String streetAddressHome=txtstreetaddress.getText();
+        String unitNumberHome=txtunitnumber.getText();
+        String phoneNumberHome=txtphonenumber.getText();
+        
+        String stateWork=txtstate1.getText();
+        String stateHome=txtstate.getText();
+        String streetAddressWork=txtstreetaddress1.getText();
+        String unitNumberWork=txtunitnumber1.getText();
+        String phoneNumberWork=txtphonenumber1.getText();
+        
+        if(firstName.isBlank() || lastName.isBlank() || cityWork.isBlank()
+                || cityHome.isBlank()){
+            JOptionPane.showMessageDialog(this,"All fields are mandatory.","Error",JOptionPane.ERROR_MESSAGE);
+            //PAUSE UNTIL THE USER CLOSES THE DIALOG.
             return;
         }
+       
         
-        
-        // validation for home address and work address
-         
-        if(hstreetadd.isBlank()||hunit.isBlank()||hcity.isBlank()||hstate.isBlank()||hZip.isBlank()||hphone.isBlank()){
-            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(wStreet.isBlank()|| wUnit.isBlank()|| wCity.isBlank()||wState.isBlank()||wZip.isBlank()|| wPhone.isBlank()){
-            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-         person.setFirstName(firstName);
+        person.setFirstName(firstName);
         person.setLastName(lastName);
         person.setSSN(SSN);
         person.setAge(age);
-       
+        person.setGender(gender);
         
-        person.getHomeAddress().setStreetAddress(hstreetadd);
-        person.getHomeAddress().setUnitNumber(hunit);
-        person.getHomeAddress().setCity(hcity);
-        person.getHomeAddress().setState(hstate);
-        person.getHomeAddress().getZipcode(hZip);
-        person.getHomeAddress().setPhonenumber(hphone);
-
-
-        person.getWorkAddress().setStreetAddress(wStreet);
-        person.getWorkAddress().setUnitNumber(wUnit);
-        person.getWorkAddress().setCity(wCity);
-        person.getWorkAddress().setState(wState);
-        person.getWorkAddress().setZipcode(wZip);
-        person.getWorkAddress().setPhonenumber(wPhone);
+        person.getWorkAddress().setCity(cityWork);
+        person.getWorkAddress().setState(stateWork);
+        person.getWorkAddress().setUnitNumber(unitNumberWork);
+        person.getWorkAddress().setStreetAddress(streetAddressWork);
+        person.getWorkAddress().setZipcode(zipCodeWork);
+        person.getWorkAddress().setPhonenumber(phoneNumberWork);
         
-        JOptionPane.showMessageDialog(null,"Account update successful","Sucess",JOptionPane.WARNING_MESSAGE);
+         person.getHomeAddress().setCity(cityHome);
+        person.getHomeAddress().setState(stateHome);
+        person.getHomeAddress().setUnitNumber(unitNumberHome);
+        person.getHomeAddress().setStreetAddress(streetAddressHome);
+        person.getHomeAddress().setZipcode(zipCodeHome);
+        person.getHomeAddress().setPhonenumber(phoneNumberHome);
+        
+        JOptionPane.showMessageDialog(null,"Person Details successfully added.","WARNING",JOptionPane.WARNING_MESSAGE);
+
         setViewMode();
     }//GEN-LAST:event_btnsaveActionPerformed
 
@@ -683,16 +672,22 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
 
     private void refreshTextFields() {
         txtfirstname.setText(person.getFirstName());
-        txtlastname.setText(person.getLastName());
-        txtssn.setText(Long.toString(person.getSSN()));
-        txtage.setText(Integer.toString(person.getAge()));
-        txtgender.setText(person.getGender());
-        
-        txtcity.setText(person.getHomeAddress().getCity());
-        txtzipcode.setText(person.getHomeAddress().getZipcode());
-        
-        txtcity1.setText(person.getWorkAddress().getCity());
-        txtzipcode1.setText(person.getWorkAddress().getZipcode());
+         txtlastname.setText(person.getLastName());
+         txtage.setText(Integer.toString(person.getAge()));
+         txtssn.setText(person.getSSN(TOOL_TIP_TEXT_KEY));
+         txtgender.setText(Character.toString(person.getGender()));
+         txtcity.setText(person.getHomeAddress().getCity());
+         txtcity1.setText(person.getWorkAddress().getCity());
+         txtzipcode.setText(Long.toString((long) person.getHomeAddress().getZipcode(HEIGHT)));
+         txtzipcode1.setText(Long.toString((long) person.getWorkAddress().getZipcode(HEIGHT)));
+         txtstate.setText(person.getHomeAddress().getState());
+         txtstate1.setText(person.getWorkAddress().getState());
+          txtunitnumber.setText(person.getHomeAddress().getUnitNumber());
+         txtunitnumber1.setText(person.getWorkAddress().getUnitNumber());
+          txtstreetaddress.setText(person.getHomeAddress().getStreetAddress());
+         txtstreetaddress1.setText(person.getWorkAddress().getStreetAddress());
+          txtphonenumber.setText(person.getHomeAddress().getPhonenumber());
+         txtphonenumber1.setText(person.getWorkAddress().getPhonenumber());
     }
 
     private void setViewMode() {

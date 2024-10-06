@@ -181,10 +181,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,"Please select a person profile from the list","Warning",JOptionPane.WARNING_MESSAGE);
             }
         }
-        else// if no row is selected
-        {
-            JOptionPane.showMessageDialog(null,"Please select a person profile from the list","Warning",JOptionPane.WARNING_MESSAGE);
-        }
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -195,8 +191,8 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(!txtSearch.getText().isBlank())
         {
-            String accountNumber = txtSearch.getText();
-            person foundPerson = personDirectory.searchperson(accountNumber);
+            String persondetails = txtSearch.getText();
+            person foundPerson = personDirectory.searchperson(persondetails);
             
             if(foundPerson!=null)//if not empty, according to the method in account directory 
             {
@@ -208,13 +204,13 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Person not found. Try again");
+                JOptionPane.showMessageDialog(null, "Person details not found. Try again");
                 //if account is not found among directory
             }
             
         }else
         {
-            JOptionPane.showMessageDialog(null, "Please type details to view","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please type person details to view","Warning",JOptionPane.WARNING_MESSAGE);
             //if search text field is empty
         }
     }//GEN-LAST:event_btnsearchActionPerformed
@@ -240,7 +236,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         } 
         else {//if row is not selected
-            JOptionPane.showMessageDialog(null, "You need to select a profile to view  details","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You need to select a profile to view  person details","Warning",JOptionPane.WARNING_MESSAGE);
         }
     //GEN-LAST:event_viewdetailsbtnActionPerformed
     
@@ -267,19 +263,21 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
       
       for(person p : personDirectory.getPerson()){
           
-          Object[] row = new Object[8];
-          row[0] = p;
-          row[1] = p.getFirstName();
-          row[2]= p.getLastName();
-          row[3]= p.getSSN();
-          row[4]=p.getAge();
-          row[5]=p.getEmail();
-          row[6]=p.getHomeAddress().toString();
-          row[7]=p.getWorkAddress().toString();
+          Object[] row = new Object[7];
+          row[0]=p;
+          row[1]=p.getFirstName();
+          row[2]=p.getLastName();
+          row[3]=p.getWorkAddress().getCity();
+          row[4]=p.getWorkAddress().getZipcode(HEIGHT);
+          row[5]=p.getHomeAddress().getCity();
+          row[6]=p.getHomeAddress().getZipcode(HEIGHT);
           
           model.addRow(row);
       
  }
+      tablist.getColumnModel().getColumn(0).setMinWidth(0); // to hide the first column
+      tablist.getColumnModel().getColumn(0).setMaxWidth(0);
+      tablist.getColumnModel().getColumn(0).setWidth(0);
 }
 }
 

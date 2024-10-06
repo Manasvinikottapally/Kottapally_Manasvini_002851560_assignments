@@ -7,9 +7,9 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.PersonDirectory;
 
-import model.person;
-import model.PersonDirectory;
-import ui.PersonDetails.CreatePersonJPanel;
+//import model.person;
+//import model.PersonDirectory;
+//import ui.PersonDetails.CreatePersonJPanel;
 
 /**
  *
@@ -84,7 +84,7 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         CreatePersonJPanel panel = new CreatePersonJPanel(userProcessContainer,personDirectory);
-        userProcessContainer.add("Add Person", panel);// adding this panel to container
+        userProcessContainer.add("CreatePersonJPanel", panel);// adding this panel to container
         
         CardLayout layout= (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);//
@@ -92,10 +92,10 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
 
     private void btnlistpersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistpersonActionPerformed
         // TODO add your handling code here:
-        ManagePersonJPanel panel = new ManagePersonJPanel(userProcessContainer,personDirectory);
-        userProcessContainer.add("List Person", panel);
-        
-        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        ManagePersonJPanel panel= new ManagePersonJPanel(userProcessContainer,personDirectory);
+
+        userProcessContainer.add("ManageAccountJPanel",panel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnlistpersonActionPerformed
 
