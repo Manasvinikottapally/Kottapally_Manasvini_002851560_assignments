@@ -594,7 +594,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
        p.getHomeAddress().setState(stateHome);
        p.getHomeAddress().setZipcode(zipCodeHome);
        p.getHomeAddress().setUnitNumber(unitNumberHome);
-        p.getWorkAddress().setCity(cityWork);
+       p.getWorkAddress().setCity(cityWork);
        p.getWorkAddress().setStreetAddress(streetAddressWork);
        p.getWorkAddress().setPhonenumber(phoneNumberWork);
        p.getWorkAddress().setState(stateWork);

@@ -145,20 +145,39 @@ public class MainJFrame extends javax.swing.JFrame {
         newPerson.setFirstName("Rachel");
         newPerson.setLastName("Green");
         newPerson.setAge(21);
-       // newPerson.setGender("F");
+        newPerson.setGender('F');
         newPerson.setSSN("784672343");
         newPerson.getWorkAddress().setState("MA"); 
         newPerson.getHomeAddress().setPhonenumber("9837765763");
         newPerson.getWorkAddress().setPhonenumber("1234567890");
         newPerson.getHomeAddress().setState("MA");
         newPerson.getWorkAddress().setStreetAddress("123 tremont st");
-       // newPerson.getWorkAddress().setZipcode("23456l");
+        newPerson.getWorkAddress().setZipcode(23456L);
         newPerson.getWorkAddress().setCity("Boston");
         newPerson.getHomeAddress().setCity("Boston");
         newPerson.getHomeAddress().setStreetAddress("103 Huntington Ave");
-        //newPerson.getHomeAddress().setZipcode("21340L");
+        newPerson.getHomeAddress().setZipcode(21340L);
         newPerson.getHomeAddress().setUnitNumber("988");
         newPerson.getWorkAddress().setUnitNumber("110");
+        
+        person newPerson1 =persondirectory.addperson();
+        newPerson1.setFirstName("Manu");
+        newPerson1.setLastName("Kottapally");
+        newPerson1.setAge(22);
+        newPerson1.setGender('F');
+        newPerson1.setSSN("784623456");
+        newPerson1.getWorkAddress().setState("MA"); 
+        newPerson1.getHomeAddress().setPhonenumber("9837761234");
+        newPerson1.getWorkAddress().setPhonenumber("1234512345");
+        newPerson1.getHomeAddress().setState("MA");
+        newPerson1.getWorkAddress().setStreetAddress("16 Bird st");
+        newPerson1.getWorkAddress().setZipcode(12345L);
+        newPerson1.getWorkAddress().setCity("Boston");
+        newPerson1.getHomeAddress().setCity("Boston");
+        newPerson1.getHomeAddress().setStreetAddress("360 Huntington Ave");
+        newPerson1.getHomeAddress().setZipcode(12309L);
+        newPerson1.getHomeAddress().setUnitNumber("777");
+        newPerson1.getWorkAddress().setUnitNumber("123");
         
         
     }
