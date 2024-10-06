@@ -41,6 +41,10 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
         btnaddperson = new javax.swing.JButton();
         btnlistperson = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
+        btnaddperson.setBackground(new java.awt.Color(102, 102, 255));
+        btnaddperson.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnaddperson.setText("Add Person");
         btnaddperson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +52,8 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnlistperson.setBackground(new java.awt.Color(102, 102, 255));
+        btnlistperson.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnlistperson.setText("List Person");
         btnlistperson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +70,7 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnlistperson)
                     .addComponent(btnaddperson))
-                .addContainerGap(688, Short.MAX_VALUE))
+                .addContainerGap(683, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnaddperson, btnlistperson});

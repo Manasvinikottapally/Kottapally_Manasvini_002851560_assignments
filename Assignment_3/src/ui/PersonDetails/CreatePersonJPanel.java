@@ -80,10 +80,15 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         txtphonenumber1 = new javax.swing.JTextField();
         btnaddperson = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
+
+        labaddlist.setBackground(new java.awt.Color(51, 102, 255));
         labaddlist.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         labaddlist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labaddlist.setText("ADD PERSON");
 
+        btnback.setBackground(new java.awt.Color(0, 102, 204));
+        btnback.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnback.setText("BACK");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,11 +114,15 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        labhomeaddress.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         labhomeaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labhomeaddress.setText("HOME ADDRESS");
 
+        labworkaddress.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         labworkaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labworkaddress.setText("WORK ADDRESS");
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         labstreetaddress.setText("Street Address");
 
@@ -206,6 +215,9 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                     .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+
+        labfirstname.setBackground(new java.awt.Color(153, 204, 255));
         labfirstname.setText("First Name");
 
         txtemail.addActionListener(new java.awt.event.ActionListener() {
@@ -322,6 +334,8 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnaddperson.setBackground(new java.awt.Color(255, 153, 204));
+        btnaddperson.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnaddperson.setText("Add Person Details");
         btnaddperson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,7 +454,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtzipcode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labstate1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                                .addComponent(labstate1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtstate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -41,6 +41,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
         SplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        TopPanel.setBackground(new java.awt.Color(204, 204, 255));
+
+        btndetails.setBackground(new java.awt.Color(102, 102, 255));
+        btndetails.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btndetails.setText("Person Details");
         btndetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +71,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         SplitPane.setTopComponent(TopPanel);
 
+        userProcessContainer.setBackground(new java.awt.Color(204, 204, 255));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         SplitPane.setRightComponent(userProcessContainer);
 
@@ -74,7 +79,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+            .addComponent(SplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

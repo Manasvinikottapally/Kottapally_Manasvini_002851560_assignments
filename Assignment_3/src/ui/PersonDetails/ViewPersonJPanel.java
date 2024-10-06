@@ -86,6 +86,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
         btnsave = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
+
         txtzipcode1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtzipcode1ActionPerformed(evt);
@@ -124,9 +126,12 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        labhomeaddress.setBackground(new java.awt.Color(255, 255, 255));
+        labhomeaddress.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         labhomeaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labhomeaddress.setText("HOME ADDRESS");
 
+        labworkaddress.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         labworkaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labworkaddress.setText("WORK ADDRESS");
 
@@ -166,6 +171,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnback.setBackground(new java.awt.Color(0, 102, 204));
+        btnback.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnback.setText("BACK");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +183,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
         labzipcode1.setText("Zipcode");
 
         lablastname.setText("Last Name");
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         labstreetaddress.setText("Street Address");
 
@@ -268,6 +277,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                     .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+
         labfirstname.setText("First Name");
 
         txtemail.addActionListener(new java.awt.event.ActionListener() {
@@ -325,6 +336,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnsave.setBackground(new java.awt.Color(255, 204, 255));
+        btnsave.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnsave.setText("Save Person Details");
         btnsave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +345,8 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnupdate.setBackground(new java.awt.Color(255, 204, 255));
+        btnupdate.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnupdate.setText("Update Person Details");
         btnupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

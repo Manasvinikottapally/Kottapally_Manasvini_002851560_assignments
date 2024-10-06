@@ -46,6 +46,10 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         btnviewdetails = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
+
+        btnback.setBackground(new java.awt.Color(0, 102, 204));
+        btnback.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnback.setText("BACK");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +57,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        lablistperson.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         lablistperson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lablistperson.setText("LIST OF PERSON DETAILS");
 
@@ -83,6 +88,8 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             tablist.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        btnsearch.setBackground(new java.awt.Color(255, 204, 204));
+        btnsearch.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnsearch.setText("Search for Person");
         btnsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +103,8 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnviewdetails.setBackground(new java.awt.Color(255, 204, 204));
+        btnviewdetails.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btnviewdetails.setText("View Person Details");
         btnviewdetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +112,8 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             }
         });
 
+        btndelete.setBackground(new java.awt.Color(255, 102, 102));
+        btndelete.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         btndelete.setText("Delete Person Details");
         btndelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,26 +126,28 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lablistperson, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnviewdetails)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnback)
-                                    .addGap(534, 534, 534)
-                                    .addComponent(btndelete))))
-                        .addGap(0, 15, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lablistperson, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnviewdetails)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnback)
+                                            .addGap(534, 534, 534)
+                                            .addComponent(btndelete))))
+                                .addGap(0, 15, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(btnsearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsearch))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btndelete, btnviewdetails});
@@ -147,10 +160,10 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnsearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(btnviewdetails)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
