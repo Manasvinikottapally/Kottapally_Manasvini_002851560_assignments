@@ -59,7 +59,7 @@ public class Address {
         this.state = state;
     }
 
-    public String getZipcode() {
+    public String getZipcode(String hZip) {
         return zipcode;
     }
 

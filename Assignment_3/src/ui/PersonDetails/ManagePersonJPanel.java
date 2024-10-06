@@ -3,18 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.PersonDetails;
-
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.person;
+import model.PersonDirectory;
 /**
  *
  * @author manasvini
  */
 public class ManagePersonJPanel extends javax.swing.JPanel {
+     JPanel userProcessContainer;
+    PersonDirectory personDirectory;
 
     /**
      * Creates new form ManagePersonJPanel
      */
-    public ManagePersonJPanel() {
+    public ManagePersonJPanel(JPanel container, PersonDirectory directory) {
         initComponents();
+        userProcessContainer = container;
+        personDirectory= directory;
+        
+        populateTable();
     }
 
     /**
@@ -29,18 +40,23 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         btnback = new javax.swing.JButton();
         lablistperson = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablist = new javax.swing.JTable();
         btnsearch = new javax.swing.JButton();
-        txtsearch = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnviewdetails = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
 
         btnback.setText("BACK");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         lablistperson.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lablistperson.setText("LIST OF PERSON DETAILS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -59,12 +75,12 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(tablist);
+        if (tablist.getColumnModel().getColumnCount() > 0) {
+            tablist.getColumnModel().getColumn(0).setResizable(false);
+            tablist.getColumnModel().getColumn(1).setResizable(false);
+            tablist.getColumnModel().getColumn(2).setResizable(false);
+            tablist.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnsearch.setText("Search for Person");
@@ -74,13 +90,18 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtsearch.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsearchActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
 
         btnviewdetails.setText("View Person Details");
+        btnviewdetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewdetailsActionPerformed(evt);
+            }
+        });
 
         btndelete.setText("Delete Person Details");
         btndelete.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +132,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(285, 285, 285)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsearch))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -126,7 +147,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnsearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
@@ -141,15 +162,92 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tablist.getSelectedRow();
+        
+        if(selectedRow>=0)
+        {
+            
+            int dialogButton = JOptionPane.YES_NO_OPTION;//option dialog box for deleting the person
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the person?", "Warning", dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION)
+            {
+                person selectedperson =(person)tablist.getValueAt(selectedRow, 0);
+                personDirectory.deleteperson(selectedperson);//methhod declared in person directory
+                populateTable();//refresh list
+            }
+            
+            else//if no is an option
+            {
+                JOptionPane.showMessageDialog(null,"Please select a person profile from the list","Warning",JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else// if no row is selected
+        {
+            JOptionPane.showMessageDialog(null,"Please select a person profile from the list","Warning",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btndeleteActionPerformed
 
-    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtsearchActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
+        if(!txtSearch.getText().isBlank())
+        {
+            String accountNumber = txtSearch.getText();
+            person foundPerson = personDirectory.searchperson(accountNumber);
+            
+            if(foundPerson!=null)//if not empty, according to the method in account directory 
+            {
+                ViewPersonJPanel panel= new ViewPersonJPanel(userProcessContainer,personDirectory,foundPerson);
+                userProcessContainer.add("ViewPerson",panel);
+                CardLayout layout=(CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Person not found. Try again");
+                //if account is not found among directory
+            }
+            
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "Please type details to view","Warning",JOptionPane.WARNING_MESSAGE);
+            //if search text field is empty
+        }
     }//GEN-LAST:event_btnsearchActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnviewdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewdetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tablist.getSelectedRow();
+        //check if user selected any account
+        if(selectedRow>= 0){
+            
+            person selectedAccount= (person)tablist.getValueAt(selectedRow,0);//the row which user selected
+            
+            ViewPersonJPanel panel= new ViewPersonJPanel(userProcessContainer,personDirectory,selectedAccount);
+            userProcessContainer.add("ViewPerson",panel);
+            CardLayout layout=(CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } 
+        else {//if row is not selected
+            JOptionPane.showMessageDialog(null, "You need to select a profile to view  details","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+    //GEN-LAST:event_viewdetailsbtnActionPerformed
+    
+    
+    
+    
+    }//GEN-LAST:event_btnviewdetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -158,8 +256,30 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnviewdetails;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lablistperson;
-    private javax.swing.JTextField txtsearch;
+    private javax.swing.JTable tablist;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tablist.getModel();
+        model.setRowCount(0);
+      
+      for(person p : personDirectory.getPerson()){
+          
+          Object[] row = new Object[8];
+          row[0] = p;
+          row[1] = p.getFirstName();
+          row[2]= p.getLastName();
+          row[3]= p.getSSN();
+          row[4]=p.getAge();
+          row[5]=p.getEmail();
+          row[6]=p.getHomeAddress().toString();
+          row[7]=p.getWorkAddress().toString();
+          
+          model.addRow(row);
+      
+ }
 }
+}
+

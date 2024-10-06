@@ -41,7 +41,7 @@
                       <EmptySpace min="67" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labgender" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfirstname4" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="txtgender" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           <Component id="labage" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txtage" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           <Component id="lablastname" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labgender" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtfirstname4" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtgender" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
@@ -141,9 +141,11 @@
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Component id="labzipcode1" min="-2" pref="18" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtzipcode1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labstate1" pref="31" max="32767" attributes="0"/>
@@ -215,9 +217,9 @@
         <Property name="text" type="java.lang.String" value="Gender"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfirstname4">
+    <Component class="javax.swing.JTextField" name="txtgender">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfirstname4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtgenderActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labhomeaddress">
@@ -503,6 +505,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Update Person Details"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnupdateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
