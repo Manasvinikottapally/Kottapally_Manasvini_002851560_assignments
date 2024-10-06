@@ -3,18 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.PersonDetails;
+import java.awt.CardLayout;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import model.Address;
+import model.person;
+import model.PersonDirectory;
 
 /**
  *
  * @author manasvini
  */
 public class CreatePersonJPanel extends javax.swing.JPanel {
-
+      private JPanel userProcessContainer;
+      private PersonDirectory personDirectory;
     /**
      * Creates new form CreatePersonJPanel
      */
-    public CreatePersonJPanel() {
+    public CreatePersonJPanel(JPanel userProcessContainer, PersonDirectory personDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.personDirectory= personDirectory;
     }
 
     /**
@@ -26,19 +36,624 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labaddlist = new javax.swing.JLabel();
+        btnback = new javax.swing.JButton();
+        lablastname = new javax.swing.JLabel();
+        txtlastname = new javax.swing.JTextField();
+        labage = new javax.swing.JLabel();
+        txtage = new javax.swing.JTextField();
+        labgender = new javax.swing.JLabel();
+        txtgender = new javax.swing.JTextField();
+        labhomeaddress = new javax.swing.JLabel();
+        labworkaddress = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        labstreetaddress = new javax.swing.JLabel();
+        labunitnumber = new javax.swing.JLabel();
+        txtstate = new javax.swing.JTextField();
+        txtunitnumber = new javax.swing.JTextField();
+        txtstreetaddress = new javax.swing.JTextField();
+        labstate = new javax.swing.JLabel();
+        labcity = new javax.swing.JLabel();
+        txtcity = new javax.swing.JTextField();
+        labzipcode = new javax.swing.JLabel();
+        txtzipcode = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        labfirstname = new javax.swing.JLabel();
+        txtemail = new javax.swing.JTextField();
+        txtssn = new javax.swing.JTextField();
+        txtfirstname = new javax.swing.JTextField();
+        labssn = new javax.swing.JLabel();
+        labemail = new javax.swing.JLabel();
+        txtphonenumber = new javax.swing.JTextField();
+        labphonenumber = new javax.swing.JLabel();
+        labstreetname1 = new javax.swing.JLabel();
+        txtstreetaddress1 = new javax.swing.JTextField();
+        labunitnumber1 = new javax.swing.JLabel();
+        txtunitnumber1 = new javax.swing.JTextField();
+        labcity1 = new javax.swing.JLabel();
+        txtcity1 = new javax.swing.JTextField();
+        labstate1 = new javax.swing.JLabel();
+        txtstate1 = new javax.swing.JTextField();
+        labzipcode1 = new javax.swing.JLabel();
+        txtzipcode1 = new javax.swing.JTextField();
+        labphonenumber1 = new javax.swing.JLabel();
+        txtphonenumber1 = new javax.swing.JTextField();
+        btnaddperson = new javax.swing.JButton();
+
+        labaddlist.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        labaddlist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labaddlist.setText("ADD PERSON");
+
+        btnback.setText("BACK");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
+        lablastname.setText("Last Name");
+
+        labage.setText("AGE");
+
+        txtage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtageActionPerformed(evt);
+            }
+        });
+
+        labgender.setText("Gender");
+
+        txtgender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtgenderActionPerformed(evt);
+            }
+        });
+
+        labhomeaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labhomeaddress.setText("HOME ADDRESS");
+
+        labworkaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labworkaddress.setText("WORK ADDRESS");
+
+        labstreetaddress.setText("Street Address");
+
+        labunitnumber.setText("Unit Number");
+
+        txtstate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtstateActionPerformed(evt);
+            }
+        });
+
+        txtunitnumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtunitnumberActionPerformed(evt);
+            }
+        });
+
+        txtstreetaddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtstreetaddressActionPerformed(evt);
+            }
+        });
+
+        labstate.setText("State");
+
+        labcity.setText("City");
+
+        txtcity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcityActionPerformed(evt);
+            }
+        });
+
+        labzipcode.setText("Zipcode");
+
+        txtzipcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtzipcodeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtstreetaddress)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labstreetaddress)
+                            .addComponent(labstate)
+                            .addComponent(labunitnumber)
+                            .addComponent(txtunitnumber, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(txtstate))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labcity)
+                            .addComponent(txtcity, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labzipcode)
+                            .addComponent(txtzipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 57, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labstreetaddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtstreetaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labunitnumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtunitnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labcity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labzipcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labstate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtzipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        labfirstname.setText("First Name");
+
+        txtemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtemailActionPerformed(evt);
+            }
+        });
+
+        txtssn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtssnActionPerformed(evt);
+            }
+        });
+
+        txtfirstname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfirstnameActionPerformed(evt);
+            }
+        });
+
+        labssn.setText("SSN");
+
+        labemail.setText("Email");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labemail)
+                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labfirstname)
+                    .addComponent(txtfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labssn)
+                    .addComponent(txtssn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(259, 259, 259))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labemail, labfirstname, labssn, txtemail, txtfirstname, txtssn});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labfirstname)
+                .addGap(3, 3, 3)
+                .addComponent(txtfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labssn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtssn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labemail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        txtphonenumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtphonenumberActionPerformed(evt);
+            }
+        });
+
+        labphonenumber.setText("Phone Number");
+
+        labstreetname1.setText("Street Address");
+
+        txtstreetaddress1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtstreetaddress1ActionPerformed(evt);
+            }
+        });
+
+        labunitnumber1.setText("Unit Number");
+
+        txtunitnumber1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtunitnumber1ActionPerformed(evt);
+            }
+        });
+
+        labcity1.setText("City");
+
+        txtcity1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcity1ActionPerformed(evt);
+            }
+        });
+
+        labstate1.setText("State");
+
+        txtstate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtstate1ActionPerformed(evt);
+            }
+        });
+
+        labzipcode1.setText("Zipcode");
+
+        txtzipcode1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtzipcode1ActionPerformed(evt);
+            }
+        });
+
+        labphonenumber1.setText("Phone Number");
+
+        txtphonenumber1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtphonenumber1ActionPerformed(evt);
+            }
+        });
+
+        btnaddperson.setText("Add Person Details");
+        btnaddperson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddpersonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnback)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labhomeaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labphonenumber)
+                            .addComponent(txtphonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(37, 99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labworkaddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtstreetaddress1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnaddperson, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labunitnumber1)
+                                    .addComponent(txtunitnumber1, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                    .addComponent(labstate1)
+                                    .addComponent(txtstate1))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labcity1)
+                                    .addComponent(labzipcode1)
+                                    .addComponent(txtzipcode1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcity1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labphonenumber1)
+                            .addComponent(txtphonenumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labstreetname1))
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labgender)
+                            .addComponent(txtgender, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labage)
+                            .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lablastname)
+                            .addComponent(txtlastname, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(labaddlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labage, labgender, lablastname, txtage, txtgender, txtlastname});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labhomeaddress, labworkaddress});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(labaddlist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lablastname)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtlastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labgender)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtgender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labhomeaddress)
+                    .addComponent(labworkaddress))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labstreetname1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtstreetaddress1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labcity1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                                .addGap(29, 29, 29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labunitnumber1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtunitnumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labzipcode1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtzipcode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labstate1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtstate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labphonenumber1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(labphonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtphonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtphonenumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnaddperson)
+                    .addComponent(btnback))
+                .addGap(61, 61, 61))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
 
+    private void txtfirstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfirstnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfirstnameActionPerformed
+
+    private void txtssnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtssnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtssnActionPerformed
+
+    private void txtageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtageActionPerformed
+
+    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtemailActionPerformed
+
+    private void txtgenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtgenderActionPerformed
+
+    private void txtstreetaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstreetaddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstreetaddressActionPerformed
+
+    private void txtunitnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtunitnumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtunitnumberActionPerformed
+
+    private void txtstateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstateActionPerformed
+
+    private void txtcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcityActionPerformed
+
+    private void txtzipcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtzipcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtzipcodeActionPerformed
+
+    private void txtphonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphonenumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtphonenumberActionPerformed
+
+    private void txtstreetaddress1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstreetaddress1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstreetaddress1ActionPerformed
+
+    private void txtunitnumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtunitnumber1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtunitnumber1ActionPerformed
+
+    private void txtcity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcity1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcity1ActionPerformed
+
+    private void txtstate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtstate1ActionPerformed
+
+    private void txtzipcode1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtzipcode1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtzipcode1ActionPerformed
+
+    private void txtphonenumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphonenumber1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtphonenumber1ActionPerformed
+
+    private void btnaddpersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddpersonActionPerformed
+        // TODO add your handling code here:
+        long SSN;
+        int age;
+        String gender;
+        String firstName= txtfirstname.getText();
+        String lastName= txtlastname.getText();
+        
+         try{
+            SSN= Long.parseLong(txtssn.getText());
+            age = Integer.parseInt(txtage.getText());
+            //gender = Double.parseDouble(txtgender.getText());
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please check the SSN , age input. They should be numbers", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;//valid
+    }//GEN-LAST:event_btnaddpersonActionPerformed
+          String hstreetadd = txtstreetaddress.getText();
+          String hunit = txtunitnumber.getText();
+          String hcity = txtcity.getText();
+          String hstate = txtstate.getText();
+          String hzip = txtzipcode.getText();
+          String hphone = txtphonenumber.getText();
+          
+          String wStreet = txtstreetaddress1.getText();
+          String wUnit = txtunitnumber1.getText();
+          String wCity = txtcity1.getText();
+          String wState = txtstate1.getText();
+          String wZip = txtzipcode1.getText();
+          String wPhone = txtphonenumber1.getText();
+          
+          
+          if(firstName.isBlank() || lastName.isBlank())
+        {
+            JOptionPane.showMessageDialog(this,"All fields are mandatory","Error",JOptionPane.ERROR_MESSAGE);
+            //validification for create account , checking if the text fields are empty
+            //stops the process if it's empty
+            return;
+        }
+        
+        
+        // validation for home address and work address
+         
+        if(hstreetadd.isBlank()||hunit.isBlank()||hcity.isBlank()||hstate.isBlank()||hzip.isBlank()||hphone.isBlank()){
+            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(wStreet.isBlank()|| wUnit.isBlank()|| wCity.isBlank()||wState.isBlank()||wZip.isBlank()|| wPhone.isBlank()){
+            JOptionPane.showMessageDialog(this,"All work address feilds are mandatory","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(null, "Account Created!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        //clearing text fields after submitting
+        txtfirstname.setText("");
+        txtlastname.setText("");
+        txtssn.setText("");
+        txtage.setText("");
+        
+        txtstreetaddress.setText("");
+        txtunitnumber.setText("");
+        txtcity.setText("");
+        txtstate.setText("");
+        txtzipcode.setText("");
+        txtphonenumber.setText("");
+        
+        txtstreetaddress1.setText("");
+        txtunitnumber1.setText("");
+        txtcity1.setText("");
+        txtstate1.setText("");
+        txtzipcode1.setText("");
+        txtphonenumber1.setText("");
+        
+    }
+        
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnaddperson;
+    private javax.swing.JButton btnback;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labaddlist;
+    private javax.swing.JLabel labage;
+    private javax.swing.JLabel labcity;
+    private javax.swing.JLabel labcity1;
+    private javax.swing.JLabel labemail;
+    private javax.swing.JLabel labfirstname;
+    private javax.swing.JLabel labgender;
+    private javax.swing.JLabel labhomeaddress;
+    private javax.swing.JLabel lablastname;
+    private javax.swing.JLabel labphonenumber;
+    private javax.swing.JLabel labphonenumber1;
+    private javax.swing.JLabel labssn;
+    private javax.swing.JLabel labstate;
+    private javax.swing.JLabel labstate1;
+    private javax.swing.JLabel labstreetaddress;
+    private javax.swing.JLabel labstreetname1;
+    private javax.swing.JLabel labunitnumber;
+    private javax.swing.JLabel labunitnumber1;
+    private javax.swing.JLabel labworkaddress;
+    private javax.swing.JLabel labzipcode;
+    private javax.swing.JLabel labzipcode1;
+    private javax.swing.JTextField txtage;
+    private javax.swing.JTextField txtcity;
+    private javax.swing.JTextField txtcity1;
+    private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtfirstname;
+    private javax.swing.JTextField txtgender;
+    private javax.swing.JTextField txtlastname;
+    private javax.swing.JTextField txtphonenumber;
+    private javax.swing.JTextField txtphonenumber1;
+    private javax.swing.JTextField txtssn;
+    private javax.swing.JTextField txtstate;
+    private javax.swing.JTextField txtstate1;
+    private javax.swing.JTextField txtstreetaddress;
+    private javax.swing.JTextField txtstreetaddress1;
+    private javax.swing.JTextField txtunitnumber;
+    private javax.swing.JTextField txtunitnumber1;
+    private javax.swing.JTextField txtzipcode;
+    private javax.swing.JTextField txtzipcode1;
     // End of variables declaration//GEN-END:variables
 }

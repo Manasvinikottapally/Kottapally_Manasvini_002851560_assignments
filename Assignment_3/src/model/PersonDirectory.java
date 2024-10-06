@@ -1,3 +1,5 @@
+package model;
+
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class PersonDirectory {
          return persons;
     }
     public void setperson(ArrayList<person> accounts) {
-      this.persons = accounts;
+      this.persons = persons;
     }
     public person addperson() {
       person a = new person () ;

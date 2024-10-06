@@ -3,18 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
-
+import java.awt.CardLayout;
+import model.Address;
+import model.person;
+import model.PersonDirectory;
+import ui.PersonDetails.PersondetailsworkareaJPanel;
 /**
  *
  * @author manasvini
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+     private PersonDirectory persondirectory;
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        
+         this.persondirectory=new PersonDirectory();
+        generateDemoData();
     }
 
     /**
@@ -29,13 +36,18 @@ public class MainJFrame extends javax.swing.JFrame {
         SplitPane = new javax.swing.JSplitPane();
         TopPanel = new javax.swing.JPanel();
         btndetails = new javax.swing.JButton();
-        bottomPanel = new javax.swing.JPanel();
+        userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         SplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         btndetails.setText("Person Details");
+        btndetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
         TopPanel.setLayout(TopPanelLayout);
@@ -56,18 +68,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         SplitPane.setTopComponent(TopPanel);
 
-        javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
-        bottomPanel.setLayout(bottomPanelLayout);
-        bottomPanelLayout.setHorizontalGroup(
-            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 774, Short.MAX_VALUE)
-        );
-        bottomPanelLayout.setVerticalGroup(
-            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 523, Short.MAX_VALUE)
-        );
-
-        SplitPane.setRightComponent(bottomPanel);
+        userProcessContainer.setLayout(new java.awt.CardLayout());
+        SplitPane.setRightComponent(userProcessContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +84,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btndetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndetailsActionPerformed
+        // TODO add your handling code here:
+        PersondetailsworkareaJPanel panel = new  PersondetailsworkareaJPanel(userProcessContainer,persondirectory);
+        userProcessContainer.add("PersondetailsworkareaJPanel", panel);//adding this panel to container
+        
+        //adding in userprocessorcontainer for switching view
+        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btndetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,7 +134,30 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane SplitPane;
     private javax.swing.JPanel TopPanel;
-    private javax.swing.JPanel bottomPanel;
     private javax.swing.JButton btndetails;
+    private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void generateDemoData() {
+        
+        person Person1 = persondirectory.addperson();
+        Person1.setFirstName("sai");
+        Person1.setLastName("kumar");
+        Person1.setSSN(85789134);
+        Person1.setAge(24);
+        Person1.setEmail("asdfghjkoiuy@gmail.com");
+        Person1.setGender("male");
+        
+        
+        Address homeAdd1= new Address();       
+        homeAdd1.setCity("Boston");        
+        homeAdd1.setZipcode("02125");
+        Person1.setHomeAddress(homeAdd1);
+        
+         Address workAdd1= new Address();
+        workAdd1.setCity("Boston");
+        workAdd1.setZipcode("02179");
+        Person1.setWorkAddress(workAdd1);
+
+    }
 }

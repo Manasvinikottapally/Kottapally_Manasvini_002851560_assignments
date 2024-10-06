@@ -3,18 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.PersonDetails;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.PersonDirectory;
+
+import model.person;
+import model.PersonDirectory;
+import ui.PersonDetails.CreatePersonJPanel;
 
 /**
  *
  * @author manasvini
  */
 public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
-
+    
+    JPanel userProcessContainer;
+    PersonDirectory personDirectory;
+ 
     /**
      * Creates new form PersondetailsworkareaJPanel
      */
-    public PersondetailsworkareaJPanel() {
+    public PersondetailsworkareaJPanel(JPanel container, PersonDirectory directory) {
         initComponents();
+        userProcessContainer = container;
+        personDirectory = directory;
     }
 
     /**
@@ -26,19 +38,70 @@ public class PersondetailsworkareaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnaddperson = new javax.swing.JButton();
+        btnlistperson = new javax.swing.JButton();
+
+        btnaddperson.setText("Add Person");
+        btnaddperson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddpersonActionPerformed(evt);
+            }
+        });
+
+        btnlistperson.setText("List Person");
+        btnlistperson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlistpersonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnlistperson)
+                    .addComponent(btnaddperson))
+                .addContainerGap(688, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnaddperson, btnlistperson});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(btnaddperson)
+                .addGap(36, 36, 36)
+                .addComponent(btnlistperson)
+                .addContainerGap(412, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnaddpersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddpersonActionPerformed
+        // TODO add your handling code here:
+        
+        CreatePersonJPanel panel = new CreatePersonJPanel(userProcessContainer,personDirectory);
+        userProcessContainer.add("Add Person", panel);// adding this panel to container
+        
+        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);//
+    }//GEN-LAST:event_btnaddpersonActionPerformed
+
+    private void btnlistpersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistpersonActionPerformed
+        // TODO add your handling code here:
+        ManagePersonJPanel panel = new ManagePersonJPanel(userProcessContainer,personDirectory);
+        userProcessContainer.add("List Person", panel);
+        
+        CardLayout layout= (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnlistpersonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnaddperson;
+    private javax.swing.JButton btnlistperson;
     // End of variables declaration//GEN-END:variables
 }

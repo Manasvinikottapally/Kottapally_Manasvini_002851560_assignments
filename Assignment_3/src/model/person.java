@@ -1,3 +1,5 @@
+package model;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,7 +14,7 @@ public class person {
     private String lastName;
     private long SSN;
     private int age;
-    private int phonenumber;
+    private String email;
     private String gender;
     private Address homeAddress;
     private Address workAddress;
@@ -49,12 +51,12 @@ public class person {
         this.age = age;
     }
 
-    public int getPhonenumber() {
-        return phonenumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhonenumber(int phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getGender() {
@@ -80,4 +82,5 @@ public class person {
     public void setWorkAddress(Address workAddress) {
         this.workAddress = workAddress;
     }
-}    
+
+}
