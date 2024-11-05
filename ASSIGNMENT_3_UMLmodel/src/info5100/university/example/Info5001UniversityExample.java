@@ -85,9 +85,9 @@ public class Info5001UniversityExample {
         List<Course> electiveCourses = Arrays.asList(
             courseCatalog.newCourse("Web Development", "INFO 5200", 3),
             courseCatalog.newCourse("Data Science", "INFO 5300", 4),
-            courseCatalog.newCourse("Database Management", "DAMG 5400", 3),
+            courseCatalog.newCourse("Database Management", "DAMG 5400", 3),// Additional elective
             courseCatalog.newCourse("Cloud Computing", "INFO 5500", 4),
-            courseCatalog.newCourse("Machine Learning", "DAMG 5600", 3),
+            courseCatalog.newCourse("Machine Learning", "DAMG 5600", 3),// Additional elective
             courseCatalog.newCourse("Cyber Security", "CSYE 5700", 3),  // Additional elective
             courseCatalog.newCourse("Artificial Intelligence", "CSYE 5800", 4) // Additional elective
         );
@@ -129,7 +129,7 @@ public class Info5001UniversityExample {
         // Register 10 Students, each registering for at least two courses
         StudentDirectory studentDirectory = department.getStudentDirectory();
         for (int i = 1; i <= 10; i++) {
-            Person person = personDirectory.newPerson("S" + i);
+            Person person = personDirectory.newPerson("Student_" + i);
             StudentProfile student = studentDirectory.newStudentProfile(person);
             CourseLoad courseLoad = student.newCourseLoad("Fall2024");
 
@@ -139,7 +139,7 @@ public class Info5001UniversityExample {
             for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
             seat.setGrade(4.0f - (i % 3) * 0.7f); // Example grading (A, A-, B+ for variety)
            }
-            System.out.println("Student S" + i + " registered for:");
+            System.out.println("StudentID= Student_" + i + " registered for:");
             for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
                 FacultyProfile professor = seat.getCourseOffer().getAssignedFaculty();
                 String professorName = (professor != null) ? professor.getPerson().getPersonId() : "TBA";
@@ -165,8 +165,16 @@ public class Info5001UniversityExample {
 
     // Method to add a predefined course to the catalog
     public static void addPredefinedCourse(CourseCatalog courseCatalog) {
+        
+        System.out.println("  ");
+        
+        System.out.println("ADDITIONAL COURSES ADDED");
+        
         Course newCourse = courseCatalog.newCourse("Software Engineering", "INFO 5900", 3);
         System.out.println("Predefined Course added successfully: " + newCourse.getName() + " (" + newCourse.getCOurseNumber() + "), Credits: " + newCourse.getCredits());
+        
+        Course newCourse1 = courseCatalog.newCourse("Network Analysis", "TELE 7245", 4);
+        System.out.println("Predefined Course added successfully: " + newCourse1.getName() + " (" + newCourse1.getCOurseNumber() + "), Credits: " + newCourse.getCredits());
 
         // Display updated course catalog
         browseCourses(courseCatalog);
@@ -201,6 +209,7 @@ public class Info5001UniversityExample {
                 String courseName = course.getName();
                 int credits = course.getCredits();
                 float grade = seat.getGrade();
+                String letterGrade = seat.getLetterGrade();
                 
 
                 int courseFee = course.getCoursePrice();
@@ -210,7 +219,7 @@ public class Info5001UniversityExample {
 
                 System.out.println("Course: " + courseName); 
                 System.out.println ("Credits: " + credits);
-                System.out.println("Grade: " + grade);
+                System.out.println("Grade: " + letterGrade);
                 System.out.println("Professor: " + professorName);
                 System.out.println("Fee: $" + courseFee);
 

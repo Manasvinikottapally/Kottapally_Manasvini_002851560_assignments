@@ -58,7 +58,18 @@ public class SeatAssignment {
      this.grade = grade;
     }
      
+    public String getLetterGrade() {
+    float grade = getGrade(); // Use the existing getGrade method to retrieve the grade
+    if (grade >= 3.6 && grade <= 4.0) {
+        return "A";
+    } else if (grade >= 3.1 && grade <= 3.5) {
+        return "A-";
+    } else if (grade >= 2.5 && grade <= 3.0) {
+        return "B";
+    } else {
+        return "B-";
+    }
     
     
-    
+}
 }
