@@ -16,6 +16,10 @@ public class SeatAssignment {
     Seat seat;
     boolean like; //true means like and false means not like
     CourseLoad courseload;
+
+    public CourseLoad getCourseload() {
+        return courseload;
+    }
     public SeatAssignment(CourseLoad cl, Seat s){
         seat = s;
         courseload = cl;

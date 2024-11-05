@@ -18,6 +18,10 @@ public class FacultyDirectory {
     Department department;
     ArrayList<FacultyProfile> teacherlist;
 
+    public ArrayList<FacultyProfile> getTeacherlist() {
+        return teacherlist;
+    }
+
     public FacultyDirectory(Department d) {
 
         department = d;
