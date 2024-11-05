@@ -19,6 +19,14 @@ import info5100.university.example.workareas.Workarea;
 public class UserAccount {
     Person person;
     Workarea landingworkarea;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public Workarea getLandingworkarea() {
+        return landingworkarea;
+    }
     
     public UserAccount(Person p){
         person = p;

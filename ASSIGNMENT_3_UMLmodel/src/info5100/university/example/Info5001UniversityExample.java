@@ -68,8 +68,8 @@ public class Info5001UniversityExample {
         FacultyDirectory facultyDirectory = department.getFacultyDirectory();
 
         // Define Professor Names
-        List<String> professorNames = Arrays.asList("Dr. Smith", "Prof. Johnson", "Dr. Lee", "Prof. Brown", "Dr. Taylor",
-                                                     "Prof. White", "Dr. Green", "Prof. Black", "Dr. Gray", "Prof. Blue");
+        List<String> professorNames = Arrays.asList("Dr. Smith", "Prof. Johnson", "Dr. Lee", "Prof.Naveen", "Dr.vishal",
+                                                     "Prof. White", "Dr. Green", "Prof. Black", "Dr.khal", "Prof. Blue");
 
         // Create Professors and assign them to a list
         List<FacultyProfile> professors = new ArrayList<>();
@@ -80,7 +80,7 @@ public class Info5001UniversityExample {
         }
 
         // Define Courses (1 Core, 5+ Electives)
-        System.out.println("Managing Course Catalog:");
+        System.out.println("MANAGING COURSE CATALOG:");
         Course coreCourse = courseCatalog.newCourse("Application Engineering", "INFO 5100", 4); // Core course
         List<Course> electiveCourses = Arrays.asList(
             courseCatalog.newCourse("Web Development", "INFO 5200", 3),
@@ -119,6 +119,7 @@ public class Info5001UniversityExample {
             offer.generatSeats(10); // Each class has 10 seats
             FacultyProfile professor = professors.get(professorIndex % professors.size());
             offer.AssignAsTeacher(professor); // Assign a single professor
+            
             System.out.println("Assigned Professor " + professor.getPerson().getPersonId() + " to " + offer.getCourseNumber());
             professorIndex++;
         }
@@ -136,6 +137,7 @@ public class Info5001UniversityExample {
             // Register each student for at least two courses
             courseLoad.newSeatAssignment(courseOffers.get(i % courseOffers.size())); // First course
             courseLoad.newSeatAssignment(courseOffers.get((i + 1) % courseOffers.size())); // Second course
+            System.out.println("\nLIST OF STUDENTS WHO REGISTERED ");
             for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
             seat.setGrade(4.0f - (i % 3) * 0.7f); // Example grading (A, A-, B+ for variety)
            }
@@ -157,10 +159,12 @@ public class Info5001UniversityExample {
 
     // Method to browse and display all courses in the catalog
     public static void browseCourses(CourseCatalog courseCatalog) {
-        System.out.println("\nBrowsing Course Catalog:");
+        System.out.println("\nBROWSING COURSE CATALOG:");
         for (Course course : courseCatalog.getCourseList()) {
             System.out.println(" - Course Name: " + course.getName() + ", ID: " + course.getCOurseNumber() + ", Credits: " + course.getCredits());
+            
         }
+        System.out.println("  ");
     }
 
     // Method to add a predefined course to the catalog
@@ -182,7 +186,7 @@ public class Info5001UniversityExample {
 
     // Method to print the course schedule for the semester
     public static void printCourseSchedule(CourseSchedule courseSchedule) {
-        System.out.println("\nCourse Offerings for Fall2024:");
+        System.out.println("\nCOURSE OFFERINGS FOR Fall2024:");
         for (CourseOffer offer : courseSchedule.getSchedule()) {
             FacultyProfile assignedProfessor = offer.getAssignedFaculty();
             String professorName = (assignedProfessor != null) ? assignedProfessor.getPerson().getPersonId() : "TBA";
@@ -191,6 +195,7 @@ public class Info5001UniversityExample {
                                ", Professor: " + professorName +
                                ", Seats Available: " + offer.getSeatList().size());
         }
+        System.out.println("  ");
     }
 
     // Method to print the student report for the semester
@@ -198,7 +203,7 @@ public class Info5001UniversityExample {
         System.out.println("\nStudent Report for Fall 2024:");
         for (StudentProfile student : studentDirectory.getStudentList()) {
             System.out.println("Student ID: " + student.getPerson().getPersonId());
-            System.out.println("Courses, Professors, Grades, and Fees:");
+            //System.out.println("Courses, Professors, Grades, and Fees:");
 
             float totalCredits = 0;
             float totalWeightedScore = 0;
@@ -222,21 +227,19 @@ public class Info5001UniversityExample {
                 System.out.println("Grade: " + letterGrade);
                 System.out.println("Professor: " + professorName);
                 System.out.println("Fee: $" + courseFee);
+                System.out.println("....................");
 
                 totalWeightedScore += grade * credits;
                 totalCredits += credits;
                 totalTuition += courseFee;
+                
             }
 
             // Calculate GPA
             float gpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
             System.out.println("GPA: " + round(gpa));
             System.out.println("Total Tuition Fees: $" + totalTuition);
-            
-            // Graduation Eligibility Check
-             boolean readyToGraduate = degree.isStudentReadyToGraduate(student);
-             System.out.println("Ready to Graduate: " + (readyToGraduate ? "Yes" : "No"));
-             System.out.println("-------------");
+            System.out.println("*********************************************");
 
             
         }
