@@ -41,7 +41,7 @@ public class Info5001UniversityExample {
         
         Course course = coursecatalog.newCourse("app eng", "info 5100", 4);
         
-        CourseSchedule courseschedule = department.newCourseSchedule("Fall2020");
+        CourseSchedule courseschedule = department.newCourseSchedule("Fall2024");
 
         CourseOffer courseoffer = courseschedule.newCourseOffer("info 5100");
         if (courseoffer==null)return;
@@ -50,11 +50,11 @@ public class Info5001UniversityExample {
         Person person = pd.newPerson("0112303");
         StudentDirectory sd = department.getStudentDirectory();
         StudentProfile student = sd.newStudentProfile(person);
-        CourseLoad courseload = student.newCourseLoad("Fall2020"); 
+        CourseLoad courseload = student.newCourseLoad("Fall2024"); 
 //        
         courseload.newSeatAssignment(courseoffer); //register student in class
         
-        int total = department.calculateRevenuesBySemester("Fall2020");
+        int total = department.calculateRevenuesBySemester("Fall2024");
         System.out.print("Total: " + total);
 
     }*/
@@ -70,7 +70,7 @@ public class Info5001UniversityExample {
         List<String> professorNames = Arrays.asList("Dr. Smith", "Prof. Johnson", "Dr. Lee", "Prof. Brown", "Dr. Taylor",
                                                      "Prof. White", "Dr. Green", "Prof. Black", "Dr. Gray", "Prof. Blue");
 
-        // Create Professors and assign to a list
+        // Create Professors and assign them to a list
         List<FacultyProfile> professors = new ArrayList<>();
         for (String name : professorNames) {
             Person profPerson = personDirectory.newPerson(name);
@@ -95,7 +95,7 @@ public class Info5001UniversityExample {
         Degree degree = department.getDegree();
         degree.addCoreCourse(coreCourse); // Set core course
         for (Course elective : electiveCourses) {
-            degree.addElectiveCourse(elective); // Add elective courses
+            degree.addElectiveCourse(elective); // Add each elective course
         }
 
         // Browse and Display Course Catalog
@@ -116,12 +116,9 @@ public class Info5001UniversityExample {
         int professorIndex = 0;
         for (CourseOffer offer : courseOffers) {
             offer.generatSeats(10); // Each class has 10 seats
-            FacultyProfile professor1 = professors.get(professorIndex % professors.size());
-            FacultyProfile professor2 = professors.get((professorIndex + 1) % professors.size());
-            professor1.AssignAsTeacher(offer);
-            professor2.AssignAsTeacher(offer);
-            System.out.println("Assigned Professors " + professor1.getPerson().getPersonId() +
-                               " and " + professor2.getPerson().getPersonId() + " to " + offer.getCourseNumber());
+            FacultyProfile professor = professors.get(professorIndex % professors.size());
+            offer.AssignAsTeacher(professor); // Assign a single professor
+            System.out.println("Assigned Professor " + professor.getPerson().getPersonId() + " to " + offer.getCourseNumber());
             professorIndex++;
         }
 
@@ -138,14 +135,14 @@ public class Info5001UniversityExample {
             // Register each student for at least two courses
             courseLoad.newSeatAssignment(courseOffers.get(i % courseOffers.size())); // First course
             courseLoad.newSeatAssignment(courseOffers.get((i + 1) % courseOffers.size())); // Second course
+            for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
+            seat.setGrade(4.0f - (i % 3) * 0.7f); // Example grading (A, A-, B+ for variety)
+           }
             System.out.println("Student S" + i + " registered for:");
             for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
-                List<FacultyProfile> assignedProfessors = seat.getCourseOffer().getFacultyassignment();
-                String professorNamesList = assignedProfessors.stream()
-                                            .map(prof -> prof.getPerson().getPersonId())
-                                            .reduce((p1, p2) -> p1 + ", " + p2)
-                                            .orElse("TBA");
-                System.out.println(" - Course: " + seat.getAssociatedCourse().getName() + ", Professors: " + professorNamesList);
+                FacultyProfile professor = seat.getCourseOffer().getAssignedFaculty();
+                String professorName = (professor != null) ? professor.getPerson().getPersonId() : "TBA";
+                System.out.println(" - Course: " + seat.getAssociatedCourse().getName() + ", Professor: " + professorName);
             }
         }
 
@@ -178,14 +175,11 @@ public class Info5001UniversityExample {
     public static void printCourseSchedule(CourseSchedule courseSchedule) {
         System.out.println("\nCourse Offerings for Fall2020:");
         for (CourseOffer offer : courseSchedule.getSchedule()) {
-            List<FacultyProfile> assignedProfessors = offer.getFacultyassignment();
-            String professorNamesList = assignedProfessors.stream()
-                                    .map(prof -> prof.getPerson().getPersonId())
-                                    .reduce((p1, p2) -> p1 + ", " + p2)
-                                    .orElse("TBA");
+            FacultyProfile assignedProfessor = offer.getAssignedFaculty();
+            String professorName = (assignedProfessor != null) ? assignedProfessor.getPerson().getPersonId() : "TBA";
 
             System.out.println(" - Course: " + offer.getCourseNumber() +
-                               ", Professors: " + professorNamesList +
+                               ", Professor: " + professorName +
                                ", Seats Available: " + offer.getSeatList().size());
         }
     }
@@ -206,19 +200,18 @@ public class Info5001UniversityExample {
                 String courseName = course.getName();
                 int credits = course.getCredits();
                 float grade = seat.getGrade();
+                
+
                 int courseFee = course.getCoursePrice();
 
-                List<FacultyProfile> assignedProfessors = seat.getCourseOffer().getFacultyassignments();
-                String professorNamesList = assignedProfessors.stream()
-                                            .map(prof -> prof.getPerson().getPersonId())
-                                            .reduce((p1, p2) -> p1 + ", " + p2)
-                                            .orElse("TBA");
+                FacultyProfile professor = seat.getCourseOffer().getAssignedFaculty();
+                String professorName = (professor != null) ? professor.getPerson().getPersonId() : "TBA";
 
                 System.out.println("Course: " + courseName +
-                                   ", Credits: " + credits +
-                                   ", Grade: " + grade +
-                                   ", Professors: " + professorNamesList +
-                                   ", Fee: $" + courseFee);
+                               ", Credits: " + credits +
+                               ", Grade: " + grade +
+                               ", Professor: " + professorName +
+                               ", Fee: $" + courseFee);
 
                 totalWeightedScore += grade * credits;
                 totalCredits += credits;
@@ -229,13 +222,16 @@ public class Info5001UniversityExample {
             float gpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
             System.out.println("GPA: " + gpa);
             System.out.println("Total Tuition Fees: $" + totalTuition);
-
+            
             // Graduation Eligibility Check
-            boolean readyToGraduate = degree.isStudentReadyToGraduate(student);
-            System.out.println("Ready to Graduate: " + (readyToGraduate ? "Yes" : "No"));
-            System.out.println("-------------");
+             boolean readyToGraduate = degree.isStudentReadyToGraduate(student);
+             System.out.println("Ready to Graduate: " + (readyToGraduate ? "Yes" : "No"));
+             System.out.println("-------------");
+
+            
         }
     }
+
 }
 
   

@@ -20,6 +20,7 @@ public class CourseOffer {
     Course course;
     ArrayList<Seat> seatlist;
     FacultyAssignment facultyassignment;
+    
 
     public FacultyAssignment getFacultyassignment() {
         return facultyassignment;
@@ -106,7 +107,6 @@ public class CourseOffer {
     public FacultyProfile getAssignedFaculty() {
     return facultyassignment != null ? facultyassignment.getFacultyProfile() : null;
 }
-
     
 
     
