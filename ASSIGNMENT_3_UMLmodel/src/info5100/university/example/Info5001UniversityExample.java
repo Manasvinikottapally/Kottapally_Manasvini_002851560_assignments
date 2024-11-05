@@ -5,6 +5,11 @@
  */
 package info5100.university.example;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import info5100.university.example.CourseCatalog.Course;
 import info5100.university.example.CourseCatalog.CourseCatalog;
 import info5100.university.example.CourseSchedule.CourseLoad;
@@ -53,108 +58,185 @@ public class Info5001UniversityExample {
         System.out.print("Total: " + total);
 
     }*/
+    
     public static void main(String[] args) {
-    // Initialize the Department and Course Catalog
-    Department department = new Department("Information Systems");
-    CourseCatalog courseCatalog = department.getCourseCatalog();
-    
-    // Set up Core and Elective Courses
-    Course coreCourse1 = courseCatalog.newCourse("Application Engineering", "INFO 5100", 4); // Core
-    Course electiveCourse1 = courseCatalog.newCourse("Web Development", "INFO 5200", 3); // Elective
-    Course electiveCourse2 = courseCatalog.newCourse("Data Science", "INFO 5300", 4); // Elective
-    
-    // Add courses to degree requirements
-    Degree degree = department.getDegree(); // The Degree instance from Department
-    degree.addCoreCourse(coreCourse1);
-    degree.addElectiveCourse(electiveCourse1);
-    degree.addElectiveCourse(electiveCourse2);
+        // Initialize the Department and Course Catalog
+        Department department = new Department("Information Systems");
+        CourseCatalog courseCatalog = department.getCourseCatalog();
+        PersonDirectory personDirectory = department.getPersonDirectory();
+        FacultyDirectory facultyDirectory = department.getFacultyDirectory();
 
-    // Initialize Course Schedule for Fall2020
-    CourseSchedule fall2020Schedule = department.newCourseSchedule("Fall2020");
-    
-    // Create Course Offers and generate seats
-    CourseOffer appEngOffer = fall2020Schedule.newCourseOffer("INFO 5100");
-    appEngOffer.generatSeats(10);
-    CourseOffer webDevOffer = fall2020Schedule.newCourseOffer("INFO 5200");
-    webDevOffer.generatSeats(10);
-    CourseOffer dataSciOffer = fall2020Schedule.newCourseOffer("INFO 5300");
-    dataSciOffer.generatSeats(10);
+        // Define Professor Names
+        List<String> professorNames = Arrays.asList("Dr. Smith", "Prof. Johnson", "Dr. Lee", "Prof. Brown", "Dr. Taylor",
+                                                     "Prof. White", "Dr. Green", "Prof. Black", "Dr. Gray", "Prof. Blue");
 
-    // Initialize Person Directory and create Faculty
-    FacultyDirectory facultyDirectory = department.getFacultyDirectory();
-    PersonDirectory personDirectory = department.getPersonDirectory();
-    
-    // Create and Assign Professors
-    FacultyProfile prof1 = facultyDirectory.newFacultyProfile(personDirectory.newPerson("P1"));
-    FacultyProfile prof2 = facultyDirectory.newFacultyProfile(personDirectory.newPerson("P2"));
-    prof1.AssignAsTeacher(appEngOffer);
-    prof2.AssignAsTeacher(webDevOffer);
-    
-    // Initialize Student Directory and Register Students in Courses
-    StudentDirectory studentDirectory = department.getStudentDirectory();
-    
-    for (int i = 1; i <= 10; i++) {
-        Person person = personDirectory.newPerson("S" + i);
-        StudentProfile student = studentDirectory.newStudentProfile(person);
-        CourseLoad courseLoad = student.newCourseLoad("Fall2020");
-
-        // Register students in core and elective courses
-        courseLoad.newSeatAssignment(appEngOffer);
-        courseLoad.newSeatAssignment(webDevOffer);
-        courseLoad.newSeatAssignment(dataSciOffer);
-        
-        // Assign grades to each registered course
-        for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
-            seat.setGrade(4.0f - (i % 3) * 0.7f); // Example grading (A, A-, B+ for variety)
-           }
-    }
-
-    // Calculate and Display Revenue
-    int totalRevenue = department.calculateRevenuesBySemester("Fall2020");
-    System.out.println("Total Revenue for Fall 2020: $" + totalRevenue);
-
-    // Generate and Print Student Report for Fall 2020
-    System.out.println("Student Report for Fall 2020:");
-    for (StudentProfile student : studentDirectory.getStudentList()) {
-        System.out.println("Student ID: " + student.getPerson().getPersonId());
-        System.out.println("Courses, Professors, Grades, and Fees:");
-        
-        float totalCredits = 0;
-        float totalWeightedScore = 0;
-        int totalTuition = 0;
-
-        for (SeatAssignment seat : student.getTranscript().getCourseList()) {
-            Course course = seat.getAssociatedCourse();
-            String courseName = course.getName();
-            int credits = course.getCredits();
-            float grade = seat.getGrade();
-            int courseFee = course.getCoursePrice();
-            
-            FacultyProfile professor = seat.getCourseOffer().getFacultyProfile();
-            String professorName = professor != null ? professor.getPerson().getPersonId() : "TBA";
-
-            System.out.println("Course: " + courseName +
-                               ", Credits: " + credits +
-                               ", Grade: " + grade +
-                               ", Professor: " + professorName +
-                               ", Fee: $" + courseFee);
-
-            totalWeightedScore += grade * credits;
-            totalCredits += credits;
-            totalTuition += courseFee;
+        // Create Professors and assign to a list
+        List<FacultyProfile> professors = new ArrayList<>();
+        for (String name : professorNames) {
+            Person profPerson = personDirectory.newPerson(name);
+            FacultyProfile profProfile = facultyDirectory.newFacultyProfile(profPerson);
+            professors.add(profProfile);
         }
 
-        // Calculate GPA
-        float gpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
-        System.out.println("GPA: " + gpa);
-        System.out.println("Total Tuition Fees: $" + totalTuition);
+        // Define Courses (1 Core, 5+ Electives)
+        System.out.println("Managing Course Catalog:");
+        Course coreCourse = courseCatalog.newCourse("Application Engineering", "INFO 5100", 4); // Core course
+        List<Course> electiveCourses = Arrays.asList(
+            courseCatalog.newCourse("Web Development", "INFO 5200", 3),
+            courseCatalog.newCourse("Data Science", "INFO 5300", 4),
+            courseCatalog.newCourse("Database Management", "INFO 5400", 3),
+            courseCatalog.newCourse("Cloud Computing", "INFO 5500", 4),
+            courseCatalog.newCourse("Machine Learning", "INFO 5600", 3),
+            courseCatalog.newCourse("Cyber Security", "INFO 5700", 3),  // Additional elective
+            courseCatalog.newCourse("Artificial Intelligence", "INFO 5800", 4) // Additional elective
+        );
 
-        // Graduation Eligibility Check
-        boolean readyToGraduate = degree.isStudentReadyToGraduate(student);
-        System.out.println("Ready to Graduate: " + (readyToGraduate ? "Yes" : "No"));
-        System.out.println("-------------");
+        // Set up Degree Requirements
+        Degree degree = department.getDegree();
+        degree.addCoreCourse(coreCourse); // Set core course
+        for (Course elective : electiveCourses) {
+            degree.addElectiveCourse(elective); // Add elective courses
+        }
+
+        // Browse and Display Course Catalog
+        browseCourses(courseCatalog);
+
+        // Add a predefined new course to the catalog without user input
+        addPredefinedCourse(courseCatalog);
+
+        // Create Course Schedule for Fall2020 and Add Course Offers for each course
+        CourseSchedule fall2020Schedule = department.newCourseSchedule("Fall2020");
+        List<CourseOffer> courseOffers = new ArrayList<>();
+        courseOffers.add(fall2020Schedule.newCourseOffer("INFO 5100")); // Core course offer
+        for (Course elective : electiveCourses) {
+            courseOffers.add(fall2020Schedule.newCourseOffer(elective.getCOurseNumber()));
+        }
+
+        // Generate seats for each course offer and assign professors
+        int professorIndex = 0;
+        for (CourseOffer offer : courseOffers) {
+            offer.generatSeats(10); // Each class has 10 seats
+            FacultyProfile professor1 = professors.get(professorIndex % professors.size());
+            FacultyProfile professor2 = professors.get((professorIndex + 1) % professors.size());
+            professor1.AssignAsTeacher(offer);
+            professor2.AssignAsTeacher(offer);
+            System.out.println("Assigned Professors " + professor1.getPerson().getPersonId() +
+                               " and " + professor2.getPerson().getPersonId() + " to " + offer.getCourseNumber());
+            professorIndex++;
+        }
+
+        // Print Full Course Schedule
+        printCourseSchedule(fall2020Schedule);
+
+        // Register 10 Students, each registering for at least two courses
+        StudentDirectory studentDirectory = department.getStudentDirectory();
+        for (int i = 1; i <= 10; i++) {
+            Person person = personDirectory.newPerson("S" + i);
+            StudentProfile student = studentDirectory.newStudentProfile(person);
+            CourseLoad courseLoad = student.newCourseLoad("Fall2020");
+
+            // Register each student for at least two courses
+            courseLoad.newSeatAssignment(courseOffers.get(i % courseOffers.size())); // First course
+            courseLoad.newSeatAssignment(courseOffers.get((i + 1) % courseOffers.size())); // Second course
+            System.out.println("Student S" + i + " registered for:");
+            for (SeatAssignment seat : courseLoad.getSeatAssignments()) {
+                List<FacultyProfile> assignedProfessors = seat.getCourseOffer().getFacultyassignment();
+                String professorNamesList = assignedProfessors.stream()
+                                            .map(prof -> prof.getPerson().getPersonId())
+                                            .reduce((p1, p2) -> p1 + ", " + p2)
+                                            .orElse("TBA");
+                System.out.println(" - Course: " + seat.getAssociatedCourse().getName() + ", Professors: " + professorNamesList);
+            }
+        }
+
+        // Calculate and Display Revenue
+        int totalRevenue = department.calculateRevenuesBySemester("Fall2020");
+        System.out.println("\nTotal Revenue for Fall 2020: $" + totalRevenue);
+
+        // Generate and Print Student Report for Fall 2020
+        printStudentReport(studentDirectory, degree);
+    }
+
+    // Method to browse and display all courses in the catalog
+    public static void browseCourses(CourseCatalog courseCatalog) {
+        System.out.println("\nBrowsing Course Catalog:");
+        for (Course course : courseCatalog.getCourseList()) {
+            System.out.println(" - Course Name: " + course.getName() + ", ID: " + course.getCOurseNumber() + ", Credits: " + course.getCredits());
+        }
+    }
+
+    // Method to add a predefined course to the catalog
+    public static void addPredefinedCourse(CourseCatalog courseCatalog) {
+        Course newCourse = courseCatalog.newCourse("Software Engineering", "INFO 5900", 3);
+        System.out.println("Predefined Course added successfully: " + newCourse.getName() + " (" + newCourse.getCOurseNumber() + "), Credits: " + newCourse.getCredits());
+
+        // Display updated course catalog
+        browseCourses(courseCatalog);
+    }
+
+    // Method to print the course schedule for the semester
+    public static void printCourseSchedule(CourseSchedule courseSchedule) {
+        System.out.println("\nCourse Offerings for Fall2020:");
+        for (CourseOffer offer : courseSchedule.getSchedule()) {
+            List<FacultyProfile> assignedProfessors = offer.getFacultyassignment();
+            String professorNamesList = assignedProfessors.stream()
+                                    .map(prof -> prof.getPerson().getPersonId())
+                                    .reduce((p1, p2) -> p1 + ", " + p2)
+                                    .orElse("TBA");
+
+            System.out.println(" - Course: " + offer.getCourseNumber() +
+                               ", Professors: " + professorNamesList +
+                               ", Seats Available: " + offer.getSeatList().size());
+        }
+    }
+
+    // Method to print the student report for the semester
+    public static void printStudentReport(StudentDirectory studentDirectory, Degree degree) {
+        System.out.println("\nStudent Report for Fall 2020:");
+        for (StudentProfile student : studentDirectory.getStudentList()) {
+            System.out.println("Student ID: " + student.getPerson().getPersonId());
+            System.out.println("Courses, Professors, Grades, and Fees:");
+
+            float totalCredits = 0;
+            float totalWeightedScore = 0;
+            int totalTuition = 0;
+
+            for (SeatAssignment seat : student.getTranscript().getCourseList()) {
+                Course course = seat.getAssociatedCourse();
+                String courseName = course.getName();
+                int credits = course.getCredits();
+                float grade = seat.getGrade();
+                int courseFee = course.getCoursePrice();
+
+                List<FacultyProfile> assignedProfessors = seat.getCourseOffer().getFacultyassignments();
+                String professorNamesList = assignedProfessors.stream()
+                                            .map(prof -> prof.getPerson().getPersonId())
+                                            .reduce((p1, p2) -> p1 + ", " + p2)
+                                            .orElse("TBA");
+
+                System.out.println("Course: " + courseName +
+                                   ", Credits: " + credits +
+                                   ", Grade: " + grade +
+                                   ", Professors: " + professorNamesList +
+                                   ", Fee: $" + courseFee);
+
+                totalWeightedScore += grade * credits;
+                totalCredits += credits;
+                totalTuition += courseFee;
+            }
+
+            // Calculate GPA
+            float gpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
+            System.out.println("GPA: " + gpa);
+            System.out.println("Total Tuition Fees: $" + totalTuition);
+
+            // Graduation Eligibility Check
+            boolean readyToGraduate = degree.isStudentReadyToGraduate(student);
+            System.out.println("Ready to Graduate: " + (readyToGraduate ? "Yes" : "No"));
+            System.out.println("-------------");
+        }
     }
 }
+
   
 
-}

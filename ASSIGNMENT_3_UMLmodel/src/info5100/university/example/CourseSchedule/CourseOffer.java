@@ -41,17 +41,7 @@ public class CourseOffer {
         return (this.facultyassignment != null) ? this.facultyassignment.getFacultyProfile() : null;
     }
      
-//    public void AssignAsTeacher(FacultyProfile fp) {
-//
-//        facultyassignment = new FacultyAssignment(fp, this);
-//    }
-//
-//    public FacultyProfile getFacultyProfile() {
-//        if (facultyassignment == null) {
-//        return null; // Or you could throw an exception or return a default value if needed
-//    }
-//        return facultyassignment.getFacultyProfile();
-//    }
+//    
 
     public String getCourseNumber() {
         return course.getCOurseNumber();
@@ -116,7 +106,8 @@ public class CourseOffer {
     public FacultyProfile getAssignedFaculty() {
     return facultyassignment != null ? facultyassignment.getFacultyProfile() : null;
 }
-   
+
+    
 
     
 }
